@@ -22,10 +22,14 @@ function InitialButtons() {
     <>
       {!isLogin && !isSignUp && (
         <div className="buttons-box">
-          <Button variant="primary" onClick={handleLogInClick}>
+          <Button variant="primary" size="lg" onClick={handleLogInClick}>
             Log in
           </Button>
-          <Button variant="primary" onClick={handleSignUpClick}>
+          <Button
+            variant="outline-primary"
+            size="lg"
+            onClick={handleSignUpClick}
+          >
             Sign up
           </Button>
         </div>
