@@ -76,14 +76,14 @@ function Signup() {
       </Form>
       <aside className="form__aside">
         <h4>Or sign up with:</h4>
-        <a href="#" class="fb btn">
-          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+        <a href="#" className="fb btn">
+          <i className="fa fa-facebook fa-fw"></i> Login with Facebook
         </a>
-        <a href="#" class="twitter btn">
-          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+        <a href="#" className="twitter btn">
+          <i className="fa fa-twitter fa-fw"></i> Login with Twitter
         </a>
-        <a href="#" class="google btn">
-          <i class="fa fa-google fa-fw"></i> Login with Google+
+        <a href="#" className="google btn">
+          <i className="fa fa-google fa-fw"></i> Login with Google+
         </a>
       </aside>
     </article>
