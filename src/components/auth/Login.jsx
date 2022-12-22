@@ -24,28 +24,42 @@ function Login() {
   }
 
   return (
-    <Form className="form-box" onSubmit={handleSubmit}>
-      <h1 className="form-box__title">Log in</h1>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Log in
-      </Button>
-    </Form>
+    <article className="form--container">
+      <Form className="form--box" onSubmit={handleSubmit}>
+        <h1 className="form--box__title">Log in</h1>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+        <Button className="form__button" variant="primary" type="submit">
+          Log in
+        </Button>
+      </Form>
+      <aside className="form__aside">
+        <h4>Or sign up with:</h4>
+        <a href="#" class="fb btn rrss--btn">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+        </a>
+        <a href="#" class="twitter btn rrss--btn">
+          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+        </a>
+        <a href="#" class="google btn rrss--btn">
+          <i class="fa fa-google fa-fw"></i> Login with Google+
+        </a>
+      </aside>
+    </article>
   );
 }
 
