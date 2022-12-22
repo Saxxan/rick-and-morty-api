@@ -1,0 +1,11 @@
+.form-box {
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 25vh auto;
+}
+
+.form-box__title {
+    margin-bottom: 20px;
+}
