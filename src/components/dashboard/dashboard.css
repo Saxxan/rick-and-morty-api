@@ -16,10 +16,22 @@
     padding: 5px 20px;
 }
 
-.dashboard__main {
+.dashboard__body {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.dashboard__users {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dashboard__users--info {
+    width: 50vw;
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 20px;
 }
