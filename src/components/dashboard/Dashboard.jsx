@@ -13,24 +13,37 @@ import CloseButton from "react-bootstrap/CloseButton";
 import UserCard from "../user-card/UserCard";
 
 function Dashboard() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState();
+  const [bankDetails, setBankDetails] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
 
   /**
    * Effect hook to get the users from the Rick and Morty API
    */
   useEffect(() => {
-    fetch(
-      "https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,30"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
+    console.log(users);
+    if (!users && !bankDetails) {
+      console.log("if");
+      fetch(
+        "https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,30"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setUsers(data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } else if (users && !bankDetails) {
+      let tempUsers = users;
+      tempUsers.forEach((user) => {
+        user.bankAccount = (Math.random() * 5000).toFixed(2);
+        user.loan = (Math.random() * (0 - -5000 + 1) - 5000).toFixed(2);
       });
-  }, []);
+      setUsers(tempUsers);
+      setBankDetails(true);
+    }
+  }, [users, bankDetails]);
 
   /**
    * Handle log out
@@ -70,6 +83,8 @@ function Dashboard() {
                 name={user.name}
                 gender={user.gender}
                 specie={user.species}
+                bankAccount={user.bankAccount}
+                loan={user.loan}
                 openUserSettings={() => handleClickOnUser(user.id)}
               />
             ))}

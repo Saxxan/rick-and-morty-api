@@ -18,19 +18,29 @@
 
 .user--body {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
-    align-items: flex-end;
+}
+
+.user--body__header {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.user--body__main {
+    display: flex;
+    gap: 30px;
+}
+
+.user--body__column {
+    display: inline-block;
 }
 
 .user--name {
     margin: 5px 0;
+    flex-grow: 1;
 }
 
 .user--info {
     margin: 0;
-}
-
-.user--actionButton {
-    align-self: flex-start;
 }
