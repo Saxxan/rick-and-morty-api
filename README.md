@@ -1,6 +1,41 @@
-# Getting Started with Create React App
+# Prueba Frontend
+
+## API
+
+Utilizar la API de Rick y Morty: https://rickandmortyapi.com/
+
+## Objetivo general
+
+Construir una aplicación SPA de React o Vue que acceda al API publica de Rick and Morty
+simulando un módulo de gestión de usuarios donde cada uno de los personajes de la serie son
+usuarios de un sistema bancario donde:
+
+- Debe tener en cuenta que cada usuario tiene una relación con las siguientes tablas:
+- Cuentas bancarias
+- Prestamos
+- Realizar un proceso de login / logout (Utilice Firestore e incluya redes sociales)
+- Los usuarios puede hacer consignaciones y retiros de dinero
+- Los usuarios pueden hacer transferencias de dinero a otros usuarios
+- Los usuarios pueden pagar sus cuotas mensuales o hacer abonos a sus prestamos
+- Se deben disparar notificaciones en tiempo real con cada movimiento que se realice
+  en la cuenta.
+- Si un usuario esta revisando su estado de cuenta y hay algún movimiento en la misma
+  la tabla de datos se debe actualizar sin que el usuario recargue la pagina.
+- Toda la información que no este disponible en el API de Rick and Morthy, como
+  cuentas bancarias, prestamos, pagos, cuotas y demás deben ser manejadas con
+  archivos json perfectamente estructurados y documentados de como utilizar .
+- Implementar un diseño sencillo visualmente agradable (Boostrap)
+- Implementar buenas practicas de programación.
+
+# React App commands
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Initialize the dependencies to run locally
+
+In the project directory run:
+
+### `npm install`
 
 ## Available Scripts
 
