@@ -25,20 +25,8 @@
 .dashboard__users {
     width: 100vw;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
-}
-
-.dashboard__users--info {
-    width: 50vw;
-    height: 50vh;
-    border: 1px solid grey;
-    background-color: white;
-    border-radius: 20px;
-    padding: 20px;
-    z-index: 2;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
 }

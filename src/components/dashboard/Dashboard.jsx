@@ -7,49 +7,47 @@ import { signOut } from "firebase/auth";
 
 // Bootstrap components
 import Button from "react-bootstrap/Button";
-import CloseButton from "react-bootstrap/CloseButton";
 
 // Components
 import UserCard from "../user-card/UserCard";
+import UserModal from "../userModal/UserModal";
 
 function Dashboard() {
   const [users, setUsers] = useState();
-  const [bankDetails, setBankDetails] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   /**
    * Effect hook to get the users from the Rick and Morty API
+   * and creates randomly bank account data for this application
    */
   useEffect(() => {
-    console.log(users);
-    if (!users && !bankDetails) {
-      console.log("if");
-      fetch(
-        "https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,30"
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setUsers(data);
-        })
-        .catch((err) => {
-          console.log(err.message);
+    fetch(
+      "https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,30"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // setUsers(data);
+        let tempUsers = data;
+        tempUsers.forEach((user) => {
+          user.bankAccount = Number((Math.random() * 5000).toFixed(2));
+          user.loan = Number(
+            (Math.random() * (0 - -5000 + 1) - 5000).toFixed(2)
+          );
         });
-    } else if (users && !bankDetails) {
-      let tempUsers = users;
-      tempUsers.forEach((user) => {
-        user.bankAccount = (Math.random() * 5000).toFixed(2);
-        user.loan = (Math.random() * (0 - -5000 + 1) - 5000).toFixed(2);
+        setUsers(tempUsers);
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
-      setUsers(tempUsers);
-      setBankDetails(true);
-    }
-  }, [users, bankDetails]);
+  }, []);
 
   /**
    * Handle log out
    */
   function handleLogOut() {
     signOut(auth);
+    setUsers();
   }
 
   /**
@@ -59,10 +57,26 @@ function Dashboard() {
   function handleClickOnUser(id) {
     let userSelected = users.filter((user) => user.id === id);
     setSelectedUser(userSelected[0]);
+    setShowModal(true);
   }
 
+  /**
+   * Function to handle closing the modal
+   */
   function closeUserSettings() {
     setSelectedUser();
+    setShowModal(false);
+  }
+
+  function updateUsers(userId, property, value) {
+    console.log(userId, property, value);
+    let tempUsers = users;
+    tempUsers.forEach((user) => {
+      if (user.id === userId) {
+        user[property] = value;
+      }
+    });
+    setUsers(tempUsers);
   }
 
   return (
@@ -75,26 +89,24 @@ function Dashboard() {
       </header>
       {users && (
         <main className="dashboard__body">
+          {/* List of users */}
           <article className="dashboard__users">
             {users.map((user) => (
               <UserCard
                 key={user.id}
-                img={user.image}
-                name={user.name}
-                gender={user.gender}
-                specie={user.species}
-                bankAccount={user.bankAccount}
-                loan={user.loan}
+                user={user}
                 openUserSettings={() => handleClickOnUser(user.id)}
               />
             ))}
           </article>
-          {selectedUser && (
-            <article className="dashboard__users--info">
-              <CloseButton onClick={closeUserSettings} />
-              <h2>{selectedUser.name}</h2>
-            </article>
-          )}
+          {/* Modal for the user settings */}
+          <UserModal
+            show={showModal}
+            onHide={closeUserSettings}
+            user={selectedUser ? selectedUser : ""}
+            users={users ? users : ""}
+            updateUsers={updateUsers}
+          />
         </main>
       )}
     </main>
