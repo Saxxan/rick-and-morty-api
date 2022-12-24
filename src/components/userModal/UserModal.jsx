@@ -50,6 +50,7 @@ function UserModal(props) {
         <Button className="modal--btn" onClick={togglePayLoanOn}>
           Pay loan
         </Button>
+        {/* Transfer menu */}
         {transferOn && (
           <TransferMenu
             users={props.users}
@@ -58,7 +59,14 @@ function UserModal(props) {
             closeTransferMenu={toggleTransferOn}
           />
         )}
-        {payLoanOn && <PayLoanMenu />}
+        {/* Pay loan menu */}
+        {payLoanOn && (
+          <PayLoanMenu
+            currentUser={currentUser}
+            handlePayLoan={props.updateUsers}
+            closePayLoanMenu={togglePayLoanOn}
+          />
+        )}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="danger" onClick={props.onHide}>

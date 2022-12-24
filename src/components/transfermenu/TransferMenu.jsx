@@ -11,11 +11,27 @@ function TransferMenu(props) {
 
   function handleSubmitTransfer() {
     // Check if the user has enough money for the transfer
-    if (Number(quantity) <= Number(props.currentUser.bankAccount)) {
+    if (quantity <= props.currentUser.bankAccount) {
+      // Substrack money transfer
       props.handleTransfer(
         props.currentUser.id,
         "bankAccount",
         props.currentUser.bankAccount - quantity
+      );
+
+      // Get the beneficiary user bank account
+      let beneficiaryUserBankAccount;
+      props.users.forEach((user) => {
+        if (user.id === beneficiaryId) {
+          beneficiaryUserBankAccount = Number(user.bankAccount);
+        }
+      });
+
+      // Add money transfered
+      props.handleTransfer(
+        beneficiaryId,
+        "bankAccount",
+        beneficiaryUserBankAccount + quantity
       );
     } else {
       console.log("error");
@@ -25,32 +41,33 @@ function TransferMenu(props) {
   }
 
   return (
-    <Form className="transfer--menu">
-      <h4>Make a transfer:</h4>
+    <Form className="operations--menu">
+      <h5>Make a transfer:</h5>
       <Form.Group className="mb-3" size="sm">
         <Form.Label>Quantity</Form.Label>
         <Form.Control
           placeholder="Quantity"
-          onChange={(e) => setQuantity(e.target.value)}
+          onChange={(e) => setQuantity(Number(e.target.value))}
         />
       </Form.Group>
       <Form.Group className="mb-3" size="sm">
         <Form.Label>Beneficiary</Form.Label>
-        <Form.Select onChange={(e) => setBeneficiaryId(e.target.value)}>
+        <Form.Select onChange={(e) => setBeneficiaryId(Number(e.target.value))}>
+          <option>Choose user to transfer</option>
           {props.users.map((user) => (
             <option value={user.id}>{user.name}</option>
           ))}
         </Form.Select>
       </Form.Group>
       <Button
-        className="transfer--btn"
+        className="operations--btn"
         variant="success"
         onClick={handleSubmitTransfer}
       >
         Send transfer
       </Button>
       <Button
-        className="transfer--btn"
+        className="operations--btn"
         variant="outline-danger"
         onClick={props.closeTransferMenu}
       >

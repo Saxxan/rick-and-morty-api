@@ -30,8 +30,10 @@ function Dashboard() {
         // setUsers(data);
         let tempUsers = data;
         tempUsers.forEach((user) => {
-          user.bankAccount = (Math.random() * 5000).toFixed(2);
-          user.loan = (Math.random() * (0 - -5000 + 1) - 5000).toFixed(2);
+          user.bankAccount = Number((Math.random() * 5000).toFixed(2));
+          user.loan = Number(
+            (Math.random() * (0 - -5000 + 1) - 5000).toFixed(2)
+          );
         });
         setUsers(tempUsers);
       })
