@@ -9,9 +9,16 @@ function TransferMenu(props) {
   const [quantity, setQuantity] = useState();
   const [beneficiaryId, setBeneficiaryId] = useState();
 
+  /**
+   * Function to handle a money transfer between users
+   */
   function handleSubmitTransfer() {
     // Check if the user has enough money for the transfer
-    if (quantity <= props.currentUser.bankAccount) {
+    if (
+      quantity &&
+      beneficiaryId &&
+      quantity <= props.currentUser.bankAccount
+    ) {
       // Substrack money transfer
       props.handleTransfer(
         props.currentUser.id,
@@ -33,9 +40,10 @@ function TransferMenu(props) {
         "bankAccount",
         beneficiaryUserBankAccount + quantity
       );
+
+      props.launchAlert("success", "Transfer succeeded.");
     } else {
-      console.log("error");
-      // Salta alert de error
+      props.launchAlert("danger", "Transfer failed.");
     }
     props.closeTransferMenu();
   }

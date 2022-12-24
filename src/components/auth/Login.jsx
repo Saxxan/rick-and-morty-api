@@ -9,15 +9,19 @@ import { auth } from "../../database/base";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  /**
+   * Function that handles log in
+   * @param {*} e
+   */
   function handleSubmit(e) {
     e.preventDefault();
     function onRegister() {
       signInWithEmailAndPassword(auth, email, password).catch((error) =>
-        console.log(error)
+        props.launchAlert("danger", "Incorrect credentials")
       );
     }
     onRegister();
