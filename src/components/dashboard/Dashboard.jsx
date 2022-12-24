@@ -12,7 +12,7 @@ import Button from "react-bootstrap/Button";
 import UserCard from "../user-card/UserCard";
 import UserModal from "../userModal/UserModal";
 
-function Dashboard() {
+function Dashboard(props) {
   const [users, setUsers] = useState();
   const [selectedUser, setSelectedUser] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -106,6 +106,7 @@ function Dashboard() {
             user={selectedUser ? selectedUser : ""}
             users={users ? users : ""}
             updateUsers={updateUsers}
+            launchAlert={props.launchAlert}
           />
         </main>
       )}

@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Login from "./Login";
 import Signup from "./Signup";
 
-function InitialButtons() {
+function InitialButtons(props) {
   const [isLogin, setIsLogin] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
@@ -34,7 +34,7 @@ function InitialButtons() {
           </Button>
         </div>
       )}
-      {isLogin && !isSignUp && <Login />}
+      {isLogin && !isSignUp && <Login launchAlert={props.launchAlert} />}
       {!isLogin && isSignUp && <Signup />}
     </>
   );

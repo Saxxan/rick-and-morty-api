@@ -37,7 +37,7 @@ function UserModal(props) {
       </Modal.Header>
       <Modal.Body>
         <p>Gender: {currentUser.gender}</p>
-        <p>Specie: {currentUser.species}</p>
+        <p>Species: {currentUser.species}</p>
         <p>Bank account: {currentUser.bankAccount}</p>
         <p>Loan: {currentUser.loan}</p>
         <Button
@@ -57,6 +57,7 @@ function UserModal(props) {
             currentUser={currentUser}
             handleTransfer={props.updateUsers}
             closeTransferMenu={toggleTransferOn}
+            launchAlert={props.launchAlert}
           />
         )}
         {/* Pay loan menu */}
@@ -65,6 +66,7 @@ function UserModal(props) {
             currentUser={currentUser}
             handlePayLoan={props.updateUsers}
             closePayLoanMenu={togglePayLoanOn}
+            launchAlert={props.launchAlert}
           />
         )}
       </Modal.Body>

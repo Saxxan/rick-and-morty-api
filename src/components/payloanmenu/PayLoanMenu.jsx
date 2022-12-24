@@ -27,8 +27,9 @@ function PayLoanMenu(props) {
         "loan",
         props.currentUser.loan + quantity
       );
+      props.launchAlert("success", "Transaction succeeded.");
     } else {
-      // Salta alert de error
+      props.launchAlert("danger", "Declined transaction.");
     }
     props.closePayLoanMenu();
   }
